@@ -11,46 +11,48 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   form: any = {};
-  isLoggedIn = false;
+  islogin = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
   constructor(private router:Router,private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+//       this.authService.islogin = false;
+//     if (this.tokenStorage.getToken()) {
+//       this.islogin = true;
+//       this.roles = this.tokenStorage.getUser().roles;
    
-if(this.roles.includes('ROLE_USER')){
-  this.router.navigate(['/']);
-}
-else if  (this.roles.includes('ROLE_MODERATOR')) {
+// if(this.roles.includes('APPRENANT')){
+//   this.router.navigate(['/']);
+// }
+// else if  (this.roles.includes('FORMATEUR')) {
 
-  this.router.navigate(['formateur']);
-}
-else if  (this.roles.includes('ROLE_ADMIN')){
-  this.router.navigate(['admin']);
-}
+//   this.router.navigate(['/']);
+// }
+// else if  (this.roles.includes('ADMIN')){
+//   this.router.navigate(['/']);
+// }
 
      
-    }
-  }
+//     }
+//  
+ }
   onSubmit(): void {
-    const { username, password } = this.form;
+    const { email, password } = this.form;
 
-    this.authService.login(username, password).subscribe(
+    this.authService.login(email, password).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
-        this.isLoggedIn = true;
+        this.islogin = true;
         const user = this.tokenStorage.getUser();
         this.roles = user.roles;
-        this.reloadPage();
-
-  
+        
+        this.router.navigateByUrl('home')  
+       // this.reloadPage();
       },
    
     );
