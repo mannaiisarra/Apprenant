@@ -1,0 +1,222 @@
+<div class="bootstrap-wrapper">
+  <div
+    class="blog-article-single mt-9"
+    data-src="assets/assets/images/blog/img-8.jpg"
+    uk-img
+  >
+    <div class="container-small">
+      <p class="blog-article-meta mb-3">
+        <strong> {{ quizz.title }} </strong>
+        <a href="#"> Nataly Birch </a>
+      </p>
+
+      <h1>{{ quizz.description }}</h1>
+    </div>
+  </div>
+
+  <div
+    class="container p-0"
+    *ngIf="!isSubmit"
+    (contextmenu)="onRightClick($event)"
+  >
+    <div class="container-small blog-article-content-read">
+      <div class="d-flex justify-content-around py-3">
+        <div class="score">
+          <h5>{{ quizz.maxMarks }} points</h5>
+        </div>
+        <div class="ques tion-remain">
+          <span style="front-style: italic"> </span>
+        </div>
+        <div class="timer">
+          <h5>
+            {{ timer }} second
+            <i class="fa fa-clock-o" style="font-size: 15px"></i>
+          </h5>
+        </div>
+      </div>
+      <div class="course-progressbar">
+        <div class="course-progressbar-filler" [style]="styleBar"></div>
+      </div>
+    </div>
+
+    <!-- <div class="">
+      <div class="">
+        <div class="row">
+          <div
+            class=""
+            *ngFor="let question of questions; let i = index"
+            style="width: 260em"
+          >
+            <div class="d-flex flex-row mb-4">
+              <div class="wrapper bg-white rounded">
+                <div class="content">
+                  <a href="#"> {{ i + 1 }} ) Question </a>
+                  <p class="text-muted"></p>
+                  <p class="text-justify h5 pb-2 font-weight-bold">
+                    {{ question.question }}
+                  </p>
+                  <div class="options py-3">
+                    <label class="rounded p-2 option">
+                      a) {{ question.response1 }}
+                      <input type="radio" 
+                        type=""
+                        [(ngModel)]="question.givenAnswer"
+                        [value]="question.response1"
+                        name="radio" 
+                      />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="rounded p-2 option">
+                      b) {{ question.response2 }}
+                      <input type="radio" 
+                        type=""
+                        [(ngModel)]="question.givenAnswer"
+                        [value]="question.response2"
+                        name="radio" 
+                      />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="rounded p-2 option">
+                      c) {{ question.response3 }}
+                      <input type="radio" 
+                        type=""
+                        [(ngModel)]="question.givenAnswer"
+                        [value]="question.response3"
+                        name="radio" 
+                      />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container text-center">
+            <button mat-raised-button color="primary" (click)="submitQuiz()">
+              Submit Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="wrapper bg-white rounded">
+      <div class="content" *ngFor="let question of questions; let i = index">
+        <a href="#">{{ i + 1 }} ) Question </a>
+
+        <p class="text-justify h5 pb-2 font-weight-bold">
+          {{ question.question }}
+        </p>
+        <!-- <div class="options py-3" (change)="verifRePonse(question,$event)"> -->
+
+        <div class="options py-3">
+          <label class="rounded p-2 option">
+            a) {{ question.response1 }}
+            <input
+            id="{{question.response1}}"
+              type="radio"
+              name={{question.quesId}}
+              [(ngModel)]="question.givenAnswer"
+              [value]="question.response1"
+            />
+            <span class="crossmark"></span>
+          </label>
+          <label class="rounded p-2 option">
+            b) {{ question.response2 }}
+            <input
+            id="{{question.response2}}"
+              type="radio"
+              name={{question.quesId}}
+              [(ngModel)]="question.givenAnswer"
+              [value]="question.response2"
+            />
+            <span class="checkmark"></span>
+          </label>
+          <label class="rounded p-2 option">
+            c) {{ question.response3 }}
+            <input
+            id="{{question.response3}}"
+              type="radio"
+              name={{question.quesId}}
+              [(ngModel)]="question.givenAnswer"
+              [value]="question.response3"
+            />
+            <span class="crossmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="container text-center">
+        <button mat-raised-button color="primary" (click)="submitQuiz()">
+          Submit Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isSubmit">
+  <br />
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title style="color: crimson"
+                >Result of <b>{{ resultt.quiz.title }}</b></mat-card-title
+              >
+            </mat-card-header>
+            <mat-divider></mat-divider><br />
+            <mat-card-content style="margin-left: 3%">
+              <p><b>Number of questions in quiz: </b>{{ questions.length }}</p>
+              <p>
+                <b>Number of questions attempted: </b>{{ resultt.attempted }}
+              </p>
+              <p>
+                <b>Number of Correct Answers:</b> {{ resultt.correctAnswers }}
+              </p>
+              <p>
+                <b>Marks Obtained: </b><i>{{ resultt.marksObtained }}</i>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <div id="my-pie-chart-container">
+        <div id="my-pie-chart"></div>
+
+        <div id="legenda">
+          <div class="entry">
+            <div id="color-brown" class="entry-color"></div>
+            <div class="entry-text">Antarctica</div>
+          </div>
+          <div class="entry">
+            <div id="color-black" class="entry-color"></div>
+            <div class="entry-text">Australia</div>
+          </div>
+          <div class="entry">
+            <div id="color-blue" class="entry-color"></div>
+            <div class="entry-text">South America</div>
+          </div>
+          <div class="entry">
+            <div id="color-green" class="entry-color"></div>
+            <div class="entry-text">North America</div>
+          </div>
+          <div class="entry">
+            <div id="color-yellow" class="entry-color"></div>
+            <div class="entry-text">Europe</div>
+          </div>
+          <div class="entry">
+            <div id="color-orange" class="entry-color"></div>
+            <div class="entry-text">Africa</div>
+          </div>
+          <div class="entry">
+            <div id="color-red" class="entry-color"></div>
+            <div class="entry-text">Asia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="mt-lg-5" uk-grid>
+    <div class="uk-width-expand@m">
+      <div class="section-header mb-lg-3">
+        <div class="section-header-left">
+          <h3><u> My Training</u></h3>
+        </div>
+
+        
+
+        <div class="section-header-right">
+          <div class="display-as">
+            <a
+              href="courses-list.html"
+              uk-tooltip="title: Course list; pos: top-right"
+            >
+              <span
+                class="iconify"
+                data-icon="feather:grid"
+                style="font-size: 19px"
+              ></span>
+            </a>
+            <a
+              href="#"
+              class="active"
+              uk-tooltip="title: Course Grid; pos: top-right"
+            >
+              <span
+                class="iconify"
+                data-icon="feather:list"
+                style="font-size: 19px"
+              ></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <br> <br> 
+      <div class="uk-child-width-1-4@m uk-child-width-1-4@s" uk-grid>
+        <div *ngFor="let item of formationActive; let i = index">
+          <a [routerLink]="['/home/detailformation', item.formationn.id]">
+            <div class="course-card">
+              <div class="course-card-thumbnail">
+                <img src="{{ base_picture+item.formationn.photo }}" />
+              </div>
+              <div class="course-card-body">
+                <div class="course-card-info">
+                  <div>
+                    <span class="catagroy">{{ item.formationn.titre }}</span>
+                  </div>
+                  <div>
+                    <span
+                      class="iconify"
+                      data-icon="feather:bookmark"
+                      style="font-size: 19px"
+                    ></span>
+                  </div>
+                </div>
+
+                <p>
+                  {{ item.formationn.description }}@
+                  {{ item.formationn.id }}
+                </p>
+
+                <div class="course-card-footer">
+                  <img
+                    class="rounded-circle"
+                    src="assets/images/avatar/2.jpg"
+                    width="30"
+                    height="25"
+                    alt="..."
+                  />
+
+                  <h5>
+                    Start Date {{ item.formationn.debut_date | date: "yyyy-MM-dd" }}
+                    <span
+                      class="iconify"
+                      data-icon="fe:clock"
+                      style="font-size: 15px"
+                    ></span
+                    >
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

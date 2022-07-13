@@ -1,0 +1,195 @@
+<div class="page-content-inner">
+  <!-- Main content -->
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <div uk-grid>
+    <div class="uk-width-medium@m">
+      <div
+        class="profile-cards"
+        uk-sticky="offset: 90; bottom: true; media: @m;top:2"
+      >
+        <form [formGroup]="formUser">
+          <div class="uk-position-relative my-4">
+            <div class="user-profile-photo m-auto">
+              <img src="{{ base_picture + user.photo }}" alt="" />
+            </div>
+
+            <div class="uk-position-center">
+              <div uk-form-custom>
+                <input
+                  type="file"
+                  multiple
+                  (change)="handleFileInput($event)"
+                />
+                <span
+                  class="uk-link icon-feather-camera icon-medium text-white"
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-default m-auto mb-3" (click)="editphoto()"
+            >Save photo</a
+          >
+        </form>
+
+        <h4>{{ user.username }}</h4>
+        <p class="uk-text-small">Pro member</p>
+
+        <div class="social-icons">
+          <a href="#"> <i class="icon-brand-facebook-f"></i> </a>
+          <a href="#"><i class="icon-brand-twitter"></i></a>
+          <a href="#"> <i class="icon-brand-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="uk-width-expand@m">
+      <nav class="responsive-tab style-4">
+        <ul>
+          <li class="uk-active"><a href="#"> Edit Profile </a></li>
+        </ul>
+      </nav>
+
+      <div class="section-small">
+        <div class="section-header">
+          <div class="section-header-left">
+            <div class="uk-width-expand@m">
+              <div class="uk-card-default rounded">
+                <hr class="m-0" />
+
+                <form
+                  class="uk-child-width-1-2@s uk-grid-small p-4"
+                  uk-grid
+                  [formGroup]="formUser"
+                  (ngSubmit)="EditUsers()"
+                >
+                  <div>
+                    <h4 class="uk-text-bold mb-2">Username</h4>
+                    <input
+                      type="text"
+                      class="uk-input"
+                      formControlName="username"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="uk-text-bold mb-2">Adresse</h4>
+                    <input
+                      type="text"
+                      class="uk-input"
+                      formControlName="adress"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="uk-text-bold mb-2">Email</h4>
+                    <input
+                      type="text"
+                      class="uk-input"
+                      formControlName="email"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="uk-text-bold mb-2">Phone</h4>
+                    <input
+                      type="text"
+                      class="uk-input"
+                      formControlName="phone"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="uk-text-bold mb-2">Poste</h4>
+                    <input
+                      type="text"
+                      class="uk-input"
+                      formControlName="role"
+                      readonly
+                    />
+                  </div>
+                  <div>
+                    <h4 class="uk-text-bold mb-2"></h4>
+                  </div>
+                  <div class="uk-flex uk-flex-right p-4"></div>
+                  <div class="uk-flex uk-flex-right p-4">
+                    <button class="btn btn-link mr-2">Cancle</button>
+                    <button class="btn btn-default grey">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-expand@m">
+          <div class="uk-card-default rounded mt-5">
+            <div class="uk-flex uk-flex-between uk-flex-middle py-3 px-4">
+              <h5 class="mb-0">Progress</h5>
+              <a href="#"> more </a>
+            </div>
+            <hr class="m-0" />
+            <div class="p-3">
+              <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <button type="button" class="btn btn-danger btn-icon-only">
+                    <span class="d-flex justify-content-center">
+                      <i class="icon-brand-angular icon-small"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="uk-width-expand">
+                  <h5 class="mb-2">Angular</h5>
+                  <div class="course-progressbar">
+                    <div
+                      class="course-progressbar-filler"
+                      style="width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <button type="button" class="btn btn-warning btn-icon-only">
+                    <span class="d-flex justify-content-center">
+                      <i class="icon-brand-html5 icon-small"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="uk-width-expand">
+                  <h5 class="mb-2">html5</h5>
+                  <div class="course-progressbar">
+                    <div
+                      class="course-progressbar-filler"
+                      style="width: 35%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <button type="button" class="btn btn-primary btn-icon-only">
+                    <span class="d-flex justify-content-center">
+                      <i class="icon-brand-css3-alt icon-small"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="uk-width-expand">
+                  <h5 class="mb-2">css3</h5>
+                  <div class="course-progressbar">
+                    <div
+                      class="course-progressbar-filler"
+                      style="width: 65%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

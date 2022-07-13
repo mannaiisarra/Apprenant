@@ -1,0 +1,76 @@
+<section class="content">
+   
+    <div class="row">
+      <div class="col-12">
+        <!-- Default box -->
+        <div class="box">
+          <div class="box-header with-border">
+            <div class="box-header with-border">
+              <h4 class="box-title">
+                Tasks Overview <small class="subtitle">Pending 10 tasks</small>
+              </h4>
+            </div>
+            <div *ngFor="let item of etape">
+              <div class="box-body">
+                <mat-accordion>
+                   
+                  <mat-expansion-panel
+                  
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false"
+                  >
+                 
+                  
+                    <div >
+                     
+  
+  
+                      <div class="box" *ngFor="let itemm of item.cours">     
+                        <h5><i class="fa fa-paperclip m-r-10 m-b-10"></i> Attachments <span>(3)</span></h5>
+                        <ul class="mailbox-attachments clearfix">
+                        <li>
+                          <div class="mailbox-attachment-info">
+                          <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{itemm.photo}}</a>
+                            <span class="mailbox-attachment-size">
+                              5,215 KB
+                              <a href="#" class="btn btn-primary btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                            </span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="mailbox-attachment-info">
+                          <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i></a>
+                            <span class="mailbox-attachment-size">
+                              2,145 KB
+                              <a href="#" class="btn btn-primary btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                            </span>
+                          </div>
+                        </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                   
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{ item.step_titre }}
+                      </mat-panel-title>
+
+                      <mat-panel-description>
+                     {{ panelOpenState ? "" : "" }}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+          </div>
+       
+          <!-- /.box -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Modal -->
+  
+ 
